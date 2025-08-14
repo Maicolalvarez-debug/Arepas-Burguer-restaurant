@@ -13,3 +13,6 @@
 npm run db:push
 npm run db:seed
 ```
+
+
+> Este paquete está ya configurado para **PostgreSQL** por defecto (Neon recomendado). Ajusta `DATABASE_URL` en Vercel y ejecuta `npm run db:push && npm run db:seed`.

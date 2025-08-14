@@ -19,3 +19,6 @@ o usa los scripts en `/scripts` (Windows/Mac/Linux).
 
 ## Variables de entorno
 Ver `.env.example` y `.env.production.example`.
+
+
+> Este paquete está ya configurado para **PostgreSQL** por defecto (Neon recomendado). Ajusta `DATABASE_URL` en Vercel y ejecuta `npm run db:push && npm run db:seed`.
