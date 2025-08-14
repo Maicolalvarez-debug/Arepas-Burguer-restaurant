@@ -1,0 +1,74 @@
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Category {
+  id        Int       @id @default(autoincrement())
+  name      String
+  products  Product[]
+}
+
+model Product {
+  id          Int       @id @default(autoincrement())
+  name        String
+  description String?
+  priceCents  Int
+  costCents   Int       @default(0)
+  imageUrl    String?
+  isAvailable Boolean   @default(true)
+  category    Category? @relation(fields: [categoryId], references: [id])
+  categoryId  Int?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  orderItems  OrderItem[]
+}
+
+model Table {
+  id      Int    @id @default(autoincrement())
+  number  Int    @unique
+  orders  Order[]
+}
+
+model Order {
+  id         Int         @id @default(autoincrement())
+  table      Table       @relation(fields: [tableId], references: [id])
+  tableId    Int
+  status     String      @default("PENDING")
+  items      OrderItem[]
+  createdAt  DateTime    @default(now())
+  updatedAt  DateTime    @updatedAt
+  totalCents Int         @default(0)
+  note       String?
+}
+
+model OrderItem {
+  id         Int     @id @default(autoincrement())
+  order      Order   @relation(fields: [orderId], references: [id])
+  orderId    Int
+  product    Product @relation(fields: [productId], references: [id])
+  productId  Int
+  quantity   Int
+  priceCents Int
+}
+
+model InventoryItem {
+  id          Int      @id @default(autoincrement())
+  name        String
+  quantity    Float    @default(0)
+  unit        String
+  costPerUnit Int      @default(0)
+  updatedAt   DateTime @updatedAt
+  createdAt   DateTime @default(now())
+}
+
+model Expense {
+  id        Int      @id @default(autoincrement())
+  description String
+  amountCents Int
+  date      DateTime @default(now())
+}

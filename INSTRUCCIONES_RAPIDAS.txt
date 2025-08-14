@@ -1,0 +1,6 @@
+AREPAS BURGUER - INSTRUCCIONES RÁPIDAS
+1) Instala Node 18+.
+2) Windows: scripts/INSTALAR_windows.bat (hace todo).
+3) Mac/Linux: scripts/instalar_linux_mac.sh
+Admin: /admin (clave en .env)
+Subir fotos: /admin/products (URL o archivo). Con Cloudinary en producción.
